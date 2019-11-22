@@ -192,3 +192,83 @@
 # #target#viewport > div:nth-child(4) > div > div.Row-uds8za-0.gnKDVb > div.Col-favj32-0.h-padding-h-default.h-padding-t-tight.styles__StyledCol-sc-1n8m629-12.eiisQZ > div.h-padding-b-default > div:nth-child(1) > div.h-text-bold.style__PriceFontSize-gob4i1-0.eLdTvF
 
 
+
+# from requests_html import AsyncHTMLSession
+#
+# asession = AsyncHTMLSession()
+# async def get_bestbuy():
+#     r = await asession.get('https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659')
+#     return r
+#
+# async def get_frys():
+#     r = await asession.get('https://www.frys.com/product/9956186?site=sr:SEARCH:MAIN_RSLT_PG')
+#     return r
+#
+# async def get_target():
+#     r = await asession.get('https://www.target.com/p/apple-airpods-pro/-/A-54191101')
+#     return r
+#
+# results = asession.run(get_bestbuy, get_frys, get_target)
+#
+#
+# prices = []
+# for result in results:
+#
+#     print(result.html.find(selector, first=True).text)
+#     # if r.html.find('.priceView-hero-price priceView-customer-price'):
+#     #     print(r.text)
+#     #
+#     # if r.html.find('.price-details-info'):
+#     #     print(r.text)
+#     #
+#     # if r.html.find('viewport > div:nth-child(4) > div > div.Row-uds8za-0.gnKDVb > div.Col-favj32-0.h-padding-h-default.h-padding-t-tight.styles__StyledCol-sc-1n8m629-12.eiisQZ > div.h-padding-b-default > div:nth-child(1) > div.h-text-bold.style__PriceFontSize-gob4i1-0.eLdTvF'):
+#     #     print(r.text)
+
+
+
+# from requests_html import HTMLSession
+#
+# def get_session(url, selector):
+#     session = HTMLSession()
+#     r = session.get(url)
+#     r.html.render()
+#     return r.html.find(selector)
+#
+# def find_price():
+#     page = get_session('https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659', 'priceView-hero-price priceView-customer-price')
+#
+#     airpod_price = []
+#
+#     for items in page:
+#         price = items.html.search('$', first=True,)
+#         airpod_price.append(price)
+#
+#     print(airpod_price)
+
+
+
+from requests_html import HTMLSession
+
+def get_session(url, selector):
+    session = HTMLSession()
+    r = session.get(url)
+    r.html.render()
+    return r.html.find(selector)
+
+def find_price():
+    page = get_session('https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659', 'div.priceView-hero-price priceView-customer-price')
+
+
+    for items in page:
+        price_container = items.html.find('span', first=True,)
+        airpod_price = [x.text for x in price_container]
+
+    print(airpod_price)
+
+
+
+
+
+
+
+
