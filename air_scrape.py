@@ -457,7 +457,168 @@
 
 
 
+# from requests_html import AsyncHTMLSession
+#
+# asession = AsyncHTMLSession()
+#
+#
+# bestbuy_price = []
+# a = {}
+# async def get_bestbuy():
+#     r = await asession.get('https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659')
+#     sel = '<span aria-hidden="true">$<!-- -->249.99</span>'
+#     print("The current price for AirPods Pro at Best Buy: " +r.html.find(sel, first=True).text)
+#     bestbuy_price.append(r.html.find(sel, first=True).text)
+#     a["Best Buy"] = r.html.find(sel, first=True).text
+#     return (bestbuy_price)
+#
+# frys_price = []
+# b = {}
+# async def get_frys():
+#     r = await asession.get('https://www.frys.com/product/9956186?site=sr:SEARCH:MAIN_RSLT_PG')
+#     sel = '<span id="did_price1valuediv" class="net-total net-total-price ">$269.00</span>'
+#     print("The current price for AirPods Pro at Fry's: " +r.html.find(sel, first=True).text)
+#     frys_price.append(r.html.find(sel, first=True).text)
+#     b["Fry's"] = r.html.find(sel, first=True).text
+#     return (frys_price)
+#
+# target_price = []
+# c = {}
+# async def get_target():
+#     r = await asession.get('https://www.target.com/p/apple-airpods-pro/-/A-54191101?ref=tgt_adv_XS000000&AFID=google_pla_df&fndsrc=tgtao&CPNG=PLA_Electronics%2BShopping_Local&adgroup=SC_Electronics&LID=700000001170770pgs&network=g&device=c&location=9027766&ds_rl=1246978&ds_rl=1248099&ds_rl=1246978&gclid=CjwKCAiA8ejuBRAaEiwAn-iJ3tZYPXz9_sFzXa_lRKXQAr7zzTpoo3XoE3k7JX8rpajVo4JUbovfTxoChYEQAvD_BwE&gclsrc=aw.ds')
+#     sel = '<div class="h-text-bold style__PriceFontSize-gob4i1-0 eLdTvF" data-test="product-price">$249.99</div>'
+#     print("The current price for AirPods Pro at Target: " +r.html.find(sel, first=True).text)
+#     target_price.append(r.html.find(sel, first=True).text)
+#     c["Target"] = r.html.find(sel, first=True).text
+#     return (target_price)
+#
+#
+# result = asession.run(get_bestbuy, get_frys, get_target,)
+#
+# print(a)
+# print(b)
+# print(c)
+#
+# all_prices = []
+# for price in bestbuy_price, frys_price, target_price,:
+#     dollar_stripped = price[0].strip('$')
+#     all_prices.append(float(dollar_stripped))
+# # print(all_prices)
+#
+# lowest_price = []
+# low = min(all_prices)
+# for x in all_prices:
+#     if x == low:
+#         lowest_price.append(x)
+# print(lowest_price)
+#
+# lowest_price_dict = {}
+
+########WORKED 11/25#######
+
+
+# from requests_html import AsyncHTMLSession
+# import re
+#
+# asession = AsyncHTMLSession()
+#
+#
+# bestbuy_price = []
+# a = {}
+# async def get_bestbuy():
+#     r = await asession.get('https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659')
+#     sel = 'div.priceView-hero-price.priceView-customer-price span'
+#     print("The current price for AirPods Pro at Best Buy: " +r.html.find(sel, first=True).text)
+#     bestbuy_price.append(r.html.find(sel, first=True).text)
+#     a["Best Buy"] = r.html.find(sel, first=True).text
+#     return (bestbuy_price)
+#
+# frys_price = []
+# b = {}
+# async def get_frys():
+#     r = await asession.get('https://www.frys.com/product/9956186?site=sr:SEARCH:MAIN_RSLT_PG')
+#     sel = 'span#did_price1valuediv.net-total.net-total-price'
+#     print("The current price for AirPods Pro at Fry's: " +r.html.find(sel, first=True).text)
+#     frys_price.append(r.html.find(sel, first=True).text)
+#     b["Fry's"] = r.html.find(sel, first=True).text
+#     return (frys_price)
+#
+# target_price = []
+# c = {}
+# async def get_target():
+#     r = await asession.get('https://www.target.com/p/apple-airpods-pro/-/A-54191101?ref=tgt_adv_XS000000&AFID=google_pla_df&fndsrc=tgtao&CPNG=PLA_Electronics%2BShopping_Local&adgroup=SC_Electronics&LID=700000001170770pgs&network=g&device=c&location=9027766&ds_rl=1246978&ds_rl=1248099&ds_rl=1246978&gclid=CjwKCAiA8ejuBRAaEiwAn-iJ3tZYPXz9_sFzXa_lRKXQAr7zzTpoo3XoE3k7JX8rpajVo4JUbovfTxoChYEQAvD_BwE&gclsrc=aw.ds')
+#     sel = 'div.h-text-bold.style__PriceFontSize-gob4i1-0.eLdTvF[data-test="product-price"'
+#     print("The current price for AirPods Pro at Target: " +r.html.find(sel, first=True,).text)
+#     target_price.append(r.html.find(sel, first=True).text)
+#     c["Target"] = r.html.find(sel, first=True).text
+#     return (target_price)
+#
+# result = asession.run(get_bestbuy, get_frys, get_target,)
+#
+# print(a)
+# print(b)
+# print(c)
+# <div class="h-text-bold style__PriceFontSize-gob4i1-0 eLdTvF" data-test="product-price">$249.99</div># values = text.values()
+# for x in text.values():
+#     pattern = re.sub("[^\d\.]", "", text)
+# print (pattern)
+##"[^\d\.]"  regex says "anything that isn't a number or a decimal point"
+
+# d = {**a, **b, **c}
+# for k, v in d.items():
+#     v.lstrip()
+#     print ("key: {}, value: {}".format(k, v))
+
+
+
+#
+# for value in a.values(),:
+#      dollar_stripped = value.str.strip('$')
+#      all_prices = float(dollar_stripped)
+#
+#      print(dollar_stripped)
+
+######## all_prices = []
+# for price in bestbuy_price, frys_price, target_price,:
+#     dollar_stripped = price[0].strip('$')
+#     all_prices.append(float(dollar_stripped))
+# # print(all_prices)
+#
+# lowest_price = []
+# low = min(all_prices)
+# for x in all_prices:
+#     if x == low:
+#         lowest_price.append(x)
+# print(lowest_price)
+#
+######### lowest_price_dict = {}
+
+# d = {**a, **b, **c}
+# for value in d.values():
+#     dollar_stripped = value.strip('$')
+#     all_prices = float(dollar_stripped)
+#
+#     print(dollar_stripped)
+#
+#
+#
+# for key in d.keys():
+#     print(key)
+#
+# lowest_price = []
+# low = min(all_prices)
+# for x in all_prices:
+#     if x == low:
+#         lowest_price.append(x)
+# print(lowest_price)
+
+#######changed CSS except Target########
+
+
+
+
 from requests_html import AsyncHTMLSession
+import re
 
 asession = AsyncHTMLSession()
 
@@ -466,7 +627,7 @@ bestbuy_price = []
 a = {}
 async def get_bestbuy():
     r = await asession.get('https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659')
-    sel = '<span aria-hidden="true">$<!-- -->249.99</span>'
+    sel = 'div.priceView-hero-price.priceView-customer-price span'
     print("The current price for AirPods Pro at Best Buy: " +r.html.find(sel, first=True).text)
     bestbuy_price.append(r.html.find(sel, first=True).text)
     a["Best Buy"] = r.html.find(sel, first=True).text
@@ -476,42 +637,89 @@ frys_price = []
 b = {}
 async def get_frys():
     r = await asession.get('https://www.frys.com/product/9956186?site=sr:SEARCH:MAIN_RSLT_PG')
-    sel = '<span id="did_price1valuediv" class="net-total net-total-price ">$269.00</span>'
+    sel = 'span#did_price1valuediv.net-total.net-total-price'
     print("The current price for AirPods Pro at Fry's: " +r.html.find(sel, first=True).text)
     frys_price.append(r.html.find(sel, first=True).text)
     b["Fry's"] = r.html.find(sel, first=True).text
     return (frys_price)
 
-target_price = []
-c = {}
-async def get_target():
-    r = await asession.get('https://www.target.com/p/apple-airpods-pro/-/A-54191101?ref=tgt_adv_XS000000&AFID=google_pla_df&fndsrc=tgtao&CPNG=PLA_Electronics%2BShopping_Local&adgroup=SC_Electronics&LID=700000001170770pgs&network=g&device=c&location=9027766&ds_rl=1246978&ds_rl=1248099&ds_rl=1246978&gclid=CjwKCAiA8ejuBRAaEiwAn-iJ3tZYPXz9_sFzXa_lRKXQAr7zzTpoo3XoE3k7JX8rpajVo4JUbovfTxoChYEQAvD_BwE&gclsrc=aw.ds')
-    sel = '<div class="h-text-bold style__PriceFontSize-gob4i1-0 eLdTvF" data-test="product-price">$249.99</div>'
-    print("The current price for AirPods Pro at Target: " +r.html.find(sel, first=True).text)
-    target_price.append(r.html.find(sel, first=True).text)
-    c["Target"] = r.html.find(sel, first=True).text
-    return (target_price)
+# target_price = []
+# c = {}
+# async def get_target():
+#     r = await asession.get('https://www.target.com/p/apple-airpods-pro/-/A-54191101?ref=tgt_adv_XS000000&AFID=google_pla_df&fndsrc=tgtao&CPNG=PLA_Electronics%2BShopping_Local&adgroup=SC_Electronics&LID=700000001170770pgs&network=g&device=c&location=9027766&ds_rl=1246978&ds_rl=1248099&ds_rl=1246978&gclid=CjwKCAiA8ejuBRAaEiwAn-iJ3tZYPXz9_sFzXa_lRKXQAr7zzTpoo3XoE3k7JX8rpajVo4JUbovfTxoChYEQAvD_BwE&gclsrc=aw.ds')
+#     sel = 'div.h-text-bold.style__PriceFontSize-gob4i1-0.eLdTvF[data-test="product-price"'
+#     print("The current price for AirPods Pro at Target: " +r.html.find(sel, first=True,).text)
+#     target_price.append(r.html.find(sel, first=True).text)
+#     c["Target"] = r.html.find(sel, first=True).text
+#     return (target_price)
 
-
-result = asession.run(get_bestbuy, get_frys, get_target,)
+result = asession.run(get_bestbuy, get_frys,)
 
 print(a)
 print(b)
-print(c)
+
+# <div class="h-text-bold style__PriceFontSize-gob4i1-0 eLdTvF" data-test="product-price">$249.99</div># values = text.values()
+# for x in text.values():
+#     pattern = re.sub("[^\d\.]", "", text)
+# print (pattern)
+# #"[^\d\.]"  regex says "anything that isn't a number or a decimal point"
+
+#d = {**a, **b}
+# for k, v in d.items():
+#     v.lstrip()
+#     print ("key: {}, value: {}".format(k, v))
+#
+#
+#
+#
+# for value in a.values(),:
+#      dollar_stripped = value.str.strip('$')
+#      all_prices = float(dollar_stripped)
+#
+#      print(dollar_stripped)
 
 all_prices = []
-for price in bestbuy_price, frys_price, target_price,:
+for price in bestbuy_price, frys_price,:
     dollar_stripped = price[0].strip('$')
     all_prices.append(float(dollar_stripped))
 # print(all_prices)
 
-lowest_price = []
-low = min(all_prices)
-for x in all_prices:
-    if x == low:
-        lowest_price.append(x)
-print(lowest_price)
 
-lowest_price_dict = {}
+
+# lowest_price = []
+# low = min(all_prices)
+# for x in all_prices:
+#     if x == low:
+#         lowest_price.append(str(x))
+#         # d = {**a, **b}
+#         # print([k for k, v in d.items() if v in x])
+# print(lowest_price)
+#
+# d = {**a, **b}
+# print([k for k, v in d.items() if v in lowest_price])
+
+
+def lowest_price():
+    lowest_price = []
+    low = min(all_prices)
+    for x in all_prices:
+        if x == low:
+            lowest_price.append(str(x))
+    return (lowest_price)
+
+my_list = lowest_price()
+d = {**a, **b}
+print([k for k, v in d.items() if v in my_list])
+
+### can't access corresponding key for value
+
+
+
+
+
+
+
+
+
 
 
